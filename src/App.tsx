@@ -8,7 +8,7 @@ import { cartState } from './states/cart/states'
 import { v4 as uuidv4 } from 'uuid'
 import { addItem, deleteItem, updateItem } from './states/cart/utils'
 import { Item } from './states/cart/types'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 function App() {
   const cartStates = useSnapshot(cartState)
@@ -16,40 +16,45 @@ function App() {
   const cartItems = cartStates.items
   const { products, status } = useProducts()
   const isLoading = status === 'loading'
+  const cartProducts = cartItems.map((item) => item.product)
+  const totalProducts = cartProducts.length
+  const [selectedIdToUpdate, setSelectedIdToUpdate] = useState<string>('')
 
   const handleAddItem = useCallback((product: Product) => {
     const item = { product, id: uuidv4().toString(), count: 1 } as Item
     addItem(item)
-  }, [],)
+  }, [])
 
 
   const handleIncreaseItem = useCallback((product: Product, count: number, cartItemId: string) => {
     if (!cartItemId) return
+    setSelectedIdToUpdate(cartItemId)
     const item = { product, id: cartItemId, count: count + 1 } as Item
+    console.log(item)
     updateItem(item)
-  }, [])
+  }, [selectedIdToUpdate])
 
 
   const handleDecreaseItem = useCallback((product: Product, count: number, cartItemId: string) => {
     if (!cartItemId) return
+    setSelectedIdToUpdate(cartItemId)
     const item = { product, id: cartItemId, count: count - 1 } as Item
-
+    console.log(item)
     if (count <= 1) {
       deleteItem(cartItemId)
       return
     }
 
     updateItem(item)
-  }, [])
+  }, [selectedIdToUpdate])
 
 
   return (
     <main className='relative'>
-      <Cart />
+      <Cart totalProducts={totalProducts} />
       <h1 className="text-3xl font-bold">
         Store
       </h1>
-      {JSON.stringify(cartStates.items)}
       <div className='mt-[40px] flex  gap-6 flex-wrap items-center justify-center min-h-[200px]'>
         {isLoading && (
           'Please wait...'

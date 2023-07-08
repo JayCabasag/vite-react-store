@@ -1,8 +1,11 @@
+import { useSnapshot } from 'valtio'
 import cartIcon from '../assets/bag.svg'
+import { cartState } from '../states/cart/states'
 
 export const Cart = () => {
-
-    const totalProducts = 0
+    const cartStates = useSnapshot(cartState)
+    const cartItems = cartStates.items.map((item) => item.product)
+    const totalProducts = cartItems.length
 
     return (
         <div className='absolute left-auto right-4'>

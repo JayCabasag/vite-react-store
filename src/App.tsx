@@ -1,11 +1,12 @@
 import './App.css'
 import { Product } from './context/types'
-import { ProductCard } from './components/ProductCard'
+import { ProductCard } from './components/compositions/product/ProductCard'
 import { useProducts } from './context/ProductsContext'
-import { Cart } from './components/Cart'
+import { Cart } from './components/compositions/cart/Cart'
 import { useSnapshot } from 'valtio'
 import { cartState } from './states/cart/states'
 import { Item } from './states/cart/types'
+import { Button } from './components/shared/Button'
 
 function App() {
   const cartStates = useSnapshot(cartState)
@@ -22,6 +23,14 @@ function App() {
       <h1 className="text-3xl font-bold">
         Store
       </h1>
+      <Button
+        variant='primary'
+        type='submit'
+        size='sm'
+        className='text-[16px]'
+      >
+        Checkout
+      </Button>
       <div className='mt-[40px] flex  gap-6 flex-wrap items-center justify-center min-h-[200px]'>
         {isLoading && (
           'Please wait...'

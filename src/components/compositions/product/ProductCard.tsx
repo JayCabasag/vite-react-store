@@ -1,8 +1,8 @@
-import { Product } from '../context/types'
-import { Item } from '../states/cart/types'
+import { Product } from '../../../context/types'
+import { Item } from '../../../states/cart/types'
 import { memo } from 'react';
 import { v4 as uuidv4 } from 'uuid'
-import { addItem, deleteItem, updateItem } from '../states/cart/utils';
+import { addItem, deleteItem, updateItem } from '../../../states/cart/utils';
 
 interface ProductCardProps {
     count: number,

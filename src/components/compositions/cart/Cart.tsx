@@ -1,4 +1,4 @@
-import cartIcon from '../assets/bag.svg'
+import cartIcon from '../../../assets/bag.svg'
 
 interface CartProps {
     totalProducts: number

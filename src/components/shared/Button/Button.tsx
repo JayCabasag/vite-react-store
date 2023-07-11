@@ -1,7 +1,7 @@
 import React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
-const button = cva("button", {
+const button = cva("button disabled:bg-gray-400", {
     variants: {
         variant: {
             primary: [

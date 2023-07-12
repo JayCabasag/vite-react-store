@@ -2,7 +2,6 @@ import './App.css'
 import { Product } from './context/types'
 import { ProductCard } from './components/compositions/product/ProductCard'
 import { useProducts } from './context/ProductsContext'
-import { Cart } from './components/compositions/navbar/cart/Cart'
 import { useSnapshot } from 'valtio'
 import { cartState } from './states/cart/states'
 import { Item } from './states/cart/types'
@@ -10,7 +9,6 @@ import { Navbar } from './components/compositions/navbar'
 
 function App() {
   const cartStates = useSnapshot(cartState)
-
   const cartItems = cartStates.items
   const { products, status } = useProducts()
   const isLoading = status === 'loading'

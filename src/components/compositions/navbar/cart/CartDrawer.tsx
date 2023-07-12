@@ -19,8 +19,8 @@ const CartDrawer = ({ items, showCartDrawer, toggleCartDrawer }: CartDrawerProps
         return accumulator + (price * count)
     }, 0)
 
-    return <div className={`fixed ${showCartDrawer ? 'w-full md:w-[500px]' : 'w-0'} shadow-md overflow-hidden bg-white top-0 left-auto right-0 transition-all pb-4`}>
-        <div className="h-screen w-full flex flex-col">
+    return <div className={`fixed ${showCartDrawer ? 'w-full md:w-[500px]' : 'w-0'} shadow-md overflow-hidden bg-white top-0 left-auto right-0 transition-all`}>
+        <div className={`${showCartDrawer ? ' flex ' : ' hidden '} h-screen w-full flex-col`}>
             <div className='w-full flex items-start p-4 border'>
                 <button className='min-w-[32px] min-h-[32px]' onClick={toggleCartDrawer}>
                     <img
@@ -33,7 +33,7 @@ const CartDrawer = ({ items, showCartDrawer, toggleCartDrawer }: CartDrawerProps
             </div>
             <CartItemsWrapper items={items} />
             <div className='w-full flex items-start p-4 border justify-between'>
-                <p>${amount}</p>
+                <p className='font-bold'>${amount.toFixed(2)}</p>
                 <Button variant='primary' size='sm' disabled={!hasItems}>Checkout</Button>
             </div>
         </div>

@@ -13,7 +13,7 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         const getProducts = async () => {
             setStatus('loading')
-            await fetch('https://api.escuelajs.co/api/v1/products')
+            await fetch('https://fakestoreapi.com/products')
                 .then(async (res) => {
                     const data: Product[] = await res.json()
                     setProducts(data)

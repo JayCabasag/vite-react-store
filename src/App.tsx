@@ -6,6 +6,7 @@ import { useSnapshot } from 'valtio'
 import { cartState } from './states/cart/states'
 import { Item } from './states/cart/types'
 import { Navbar } from './components/compositions/navbar'
+import storeBanner from '../src/assets/store-banner.jpg'
 
 function App() {
   const cartStates = useSnapshot(cartState)
@@ -19,6 +20,13 @@ function App() {
       <h1 className="text-3xl font-bold">
         Store
       </h1>
+      <div className='h-[110px] md:h-[300px] w-full shadow-md mt-6 overflow-hidden'>
+        <img
+          src={storeBanner}
+          height={300}
+          width='100%'
+        />
+      </div>
       <div className='mt-[40px] flex  gap-6 flex-wrap items-center justify-center min-h-[200px]'>
         {isLoading && (
           'Please wait...'
@@ -40,7 +48,6 @@ function App() {
               item={cartItem}
             />
           )
-
         })}
       </div>
     </main>

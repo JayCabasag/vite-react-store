@@ -6,6 +6,8 @@ import { addItem, deleteItem, updateItem } from '../../../states/cart/utils';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { Button } from '../../shared/Button';
+import cartIcon from '../../../assets/cart.svg'
+import cartIconWhite from '../../../assets/cart-white.svg'
 
 interface ProductCardProps {
     count: number,
@@ -49,8 +51,7 @@ export const ProductCard = memo(({ count, product, item }: ProductCardProps) => 
         <Dialog.Root>
             <div className='flex flex-col items-start shadow-md p-4 border rounded-md'>
                 <Dialog.Trigger asChild>
-                    <div className='border h-[150px] w-[150px] object-contain overflow-hidden flex items-center justify-center' role='button'>
-
+                    <div className='border h-[150px] w-[120px] md:w-[150px] object-contain overflow-hidden flex items-center justify-center' role='button'>
                         <img
                             src={product.image}
                             height={150}
@@ -60,7 +61,7 @@ export const ProductCard = memo(({ count, product, item }: ProductCardProps) => 
 
                     </div>
                 </Dialog.Trigger>
-                <h1 className='max-w-[150px] text-md font-bold text-left truncate'>{product.title}</h1>
+                <h1 className='max-w-[120px] md:max-w-[150px] text-md font-bold text-left truncate'>{product.title}</h1>
                 <p>${product.price}</p>
                 <div className='mt-[15px] w-full'>
                     {showToggler ? <>
@@ -69,7 +70,15 @@ export const ProductCard = memo(({ count, product, item }: ProductCardProps) => 
                         <button className='px-2 border' onClick={() => handleIncreaseItem()}>+</button>
                     </>
                         :
-                        <button className='px-4 border rounded-md' onClick={() => handleAddItem(product)}>Add to cart</button>
+                        <button className='px-4 border rounded-md flex items-center justify-center gap-2' onClick={() => handleAddItem(product)}>
+                            <span>
+                                <img
+                                    src={cartIcon}
+                                    height={24}
+                                    width={24}
+                                />
+                            </span>
+                            Add to cart</button>
                     }
                 </div>
             </div>
@@ -93,15 +102,27 @@ export const ProductCard = memo(({ count, product, item }: ProductCardProps) => 
                             <Dialog.Description className='mt-4'>
                                 {product.description}
                             </Dialog.Description>
+                            <Dialog.Description className='mt-4 font-bold text-md'>
+                                ${product.price}
+                            </Dialog.Description>
                             {showToggler ? (
                                 <div className='mt-4'>
-                                    <button className='px-2 border' onClick={() => handleDecreaseItem()}>-</button>
-                                    <span className='px-2'>{count}</span>
-                                    <button className='px-2 border' onClick={() => handleIncreaseItem()}>+</button>
+                                    <button className='px-3 py-[7px] border' onClick={() => handleDecreaseItem()}>-</button>
+                                    <span className='px-3 py-[7px] '>{count}</span>
+                                    <button className='px-3 py-[7px] border' onClick={() => handleIncreaseItem()}>+</button>
                                 </div>
                             )
                                 :
-                                <Button className='mt-4' variant='primary' size='md' onClick={() => handleAddItem(product)}>Add to cart</Button>
+                                <Button className='mt-4 flex gap-2 text-white' variant='primary' size='md' onClick={() => handleAddItem(product)}>
+                                    <span>
+                                        <img
+                                            src={cartIconWhite}
+                                            height={24}
+                                            width={24}
+                                        />
+                                    </span>
+                                    Add to cart
+                                </Button>
                             }
                         </div>
                     </div>

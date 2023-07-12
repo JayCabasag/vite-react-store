@@ -27,7 +27,7 @@ function App() {
           width='100%'
         />
       </div>
-      <div className='mt-[40px] flex  gap-6 flex-wrap items-center justify-center min-h-[200px]'>
+      <div className='mt-[40px] flex gap-2 md:gap-6 flex-wrap items-center justify-center min-h-[150px]  md:min-h-[200px]'>
         {isLoading && (
           'Please wait...'
         )}

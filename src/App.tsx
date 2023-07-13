@@ -7,12 +7,26 @@ import { cartState } from './states/cart/states'
 import { Item } from './states/cart/types'
 import { Navbar } from './components/compositions/navbar'
 import storeBanner from '../src/assets/store-banner.jpg'
+import { useEffect, useRef } from 'react'
+import { useIntersection } from '@mantine/hooks'
 
 function App() {
   const cartStates = useSnapshot(cartState)
   const cartItems = cartStates.items
-  const { products, status } = useProducts()
-  const isLoading = status === 'loading'
+  const { products, status, updateProductLimits } = useProducts()
+
+  const lastProductRef = useRef<HTMLElement>(null)
+  const { ref, entry } = useIntersection({
+    root: lastProductRef.current,
+    threshold: 1
+  })
+
+  useEffect(() => {
+    if (entry?.isIntersecting) updateProductLimits(5)
+  }, [entry])
+
+
+  const _products = products.flatMap(product => product)
 
   return (
     <main className='relative'>
@@ -27,11 +41,9 @@ function App() {
           width='100%'
         />
       </div>
-      <div className='mt-[40px] flex gap-2 md:gap-6 flex-wrap items-center justify-center min-h-[150px]  md:min-h-[200px]'>
-        {isLoading && (
-          'Please wait...'
-        )}
-        {!isLoading && products.map((product: Product) => {
+      <div className='mt-[40px] flex gap-2 md:gap-[200px] flex-wrap items-center justify-center min-h-[150px]  md:min-h-[200px]'>
+        {status === 'loading' && 'Please wait...'}
+        {!(status === 'loading') && _products.map((product: Product, index: number) => {
 
           const cartItem = cartItems.find((item) => {
             const itemId = item.product.id
@@ -40,16 +52,39 @@ function App() {
 
           const count = cartItem ? cartItem.count : 0
 
+          const isLastProduct = index + 1 === _products.length
+
+          if (isLastProduct) {
+            return (
+              <div ref={ref} key={product.id}>
+                <ProductCard
+                  count={count}
+                  product={product}
+                  item={cartItem}
+                />
+              </div>
+            )
+          }
+
           return (
-            <ProductCard
-              key={product.id}
-              count={count}
-              product={product}
-              item={cartItem}
-            />
+            <div key={product.id}>
+              <ProductCard
+                count={count}
+                product={product}
+                item={cartItem}
+              />
+            </div>
           )
         })}
       </div>
+      {status === 'loading-next-page' && (
+        <div className='min-h-[250px] flex items-center justify-center'>
+          Please wait...
+        </div>
+      )}
+      {/* {!(status === 'loading' || status === 'loading-next-page') && (
+        <button className='px-4 p-2 bg-blue-500 mt-10 text-white font-bold' onClick={() => updateProductLimits(5)}>Load more</button>
+      )} */}
     </main>
   )
 }

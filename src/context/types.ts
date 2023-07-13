@@ -11,4 +11,4 @@ export type Product = {
     };
 };
 
-export type StatusType = 'idle' | 'failed' | 'success' | 'loading'
+export type StatusType = 'idle' | 'failed' | 'success' | 'loading' | 'loading-next-page'

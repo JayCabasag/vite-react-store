@@ -22,7 +22,7 @@ function App() {
   })
 
   useEffect(() => {
-    if (entry?.isIntersecting) updateProductLimits(5)
+    if (entry?.isIntersecting) updateProductLimits(10)
   }, [entry])
 
 
@@ -41,7 +41,7 @@ function App() {
           width='100%'
         />
       </div>
-      <div className='mt-[40px] flex gap-2 md:gap-[200px] flex-wrap items-center justify-center min-h-[150px]  md:min-h-[200px]'>
+      <div className='mt-[40px] flex gap-2 md:gap-6 flex-wrap items-center justify-center min-h-[150px]  md:min-h-[200px]'>
         {status === 'loading' && 'Please wait...'}
         {!(status === 'loading') && _products.map((product: Product, index: number) => {
 

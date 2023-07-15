@@ -83,7 +83,7 @@ export const ProductCard = memo(({ count, product, item }: ProductCardProps) => 
                 </div>
             </div>
             <Dialog.Portal>
-                <Dialog.Overlay className="fixed opacity-80 delay-200 h-screen inset-0 backdrop-blur bg-black/50 transition-all duration-100" />
+                <Dialog.Overlay className="fixed delay-200 h-screen inset-0 backdrop-blur-md bg-white/30 transition-all duration-100" />
                 <Dialog.Content className="bg-white fixed rounded-md p-[25px] max-w-full h-full md:h-auto md:max-w-[750px] w-[90vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                     <Dialog.Close asChild>
                         <button className="IconButton" aria-label="Close">

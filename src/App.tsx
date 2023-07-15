@@ -34,10 +34,11 @@ function App() {
       <h1 className="text-3xl font-bold">
         Store
       </h1>
-      <div className='h-[110px] md:h-[300px] w-full shadow-md mt-6 overflow-hidden'>
+      <div className='h-[110px] md:h-[300px] w-full shadow-md mt-6 overflow-hidden transition-all'>
         <img
           src={storeBanner}
           height={300}
+          loading='lazy'
           width='100%'
         />
       </div>

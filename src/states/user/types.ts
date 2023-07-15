@@ -6,6 +6,5 @@ export interface User {
         barangay: string,
         city: string
     },
-    contactNumber: string,
-    email: string
+    contactNumber: string
 }

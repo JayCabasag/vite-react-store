@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Barangay, StatusType } from "../entities/types";
 
 export function useBarangaysData(url: string) {
-    const [cities, setCities] = useState<Barangay[]>([]);
+    const [barangays, setBarangays] = useState<Barangay[]>([]);
     const [status, setStatus] = useState<StatusType>('idle')
 
     useEffect(() => {
@@ -12,7 +12,7 @@ export function useBarangaysData(url: string) {
             .then(response => response.json())
             .then(json => {
                 if (!ignore) {
-                    setCities(json.data);
+                    setBarangays(json.data);
                     setStatus('success')
                 }
             }).catch(() => {
@@ -24,5 +24,5 @@ export function useBarangaysData(url: string) {
             ignore = true;
         };
     }, [url]);
-    return { cities, status }
+    return { barangays, status }
 }

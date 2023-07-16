@@ -4,7 +4,7 @@ import { Item } from '../../../../states/cart/types'
 import { Button } from '../../../shared/Button'
 import CartItemsWrapper from './CartItemsWrapper'
 import { userState } from '../../../../states/user/states'
-import { useMemo, useState } from 'react'
+import { FormEvent, useMemo, useState } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import Select from '../../../shared/Select/Select'
@@ -99,27 +99,33 @@ function UserFormFields() {
         return accumulator
     }, {} as Record<string, string>)
 
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        const data = Object.fromEntries(new FormData(event.currentTarget))
+        const newData = { ...data, province: selectedProvince, city: selectedCity } as typeof data & { province: string, city: string }
+        console.log(newData)
+    }
 
     return (
         <div>
-            <form className='flex flex-col gap-2'>
+            <form className='flex flex-col gap-2' onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                         Fullname
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Fullname" />
+                    <input className="border  px-4 rounded py-2 w-full focus:outline-none" name="username" type="text" placeholder="Fullname" />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="aptNumber">
                         House No./Apartment No.
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="aptNumber" type="text" placeholder="Apartment no./House no." />
+                    <input className="border  px-4 rounded py-2 w-full focus:outline-none" name="aptNumber" type="text" placeholder="Apartment no./House no." />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="street">
                         Street
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="street" type="text" placeholder="Street" />
+                    <input className="border  px-4 rounded py-2 w-full focus:outline-none" name="street" type="text" placeholder="Street" />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="city">
@@ -142,16 +148,16 @@ function UserFormFields() {
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="barangay">
                         Barangay
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="barangay" type="text" placeholder="Barangay" />
+                    <input className="border  px-4 rounded py-2 w-full focus:outline-none" name="barangay" type="text" placeholder="Barangay" />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="contactNumber">
                         Contact Number
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="contactNumber" type="text" placeholder="Contact number" />
+                    <input className="border  px-4 rounded py-2 w-full focus:outline-none" name="contactNumber" type="text" placeholder="Contact number" />
                 </div>
-                <Button variant='primary' size='md' onClick={() => { }}>Continue</Button>
-                <Button className='hover:text-red-500 hover:border-red-500' variant='secondary' size='md'>Cancel</Button>
+                <Button variant='primary' size='md'>Continue</Button>
+                <Button type='button' className='hover:text-red-500 hover:border-red-500' variant='secondary' size='md'>Cancel</Button>
             </form>
         </div>
     )

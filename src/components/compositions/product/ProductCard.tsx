@@ -1,4 +1,4 @@
-import { Product } from '../../../context/types'
+import { Product } from '../../../entities/types';
 import { Item } from '../../../states/cart/types'
 import { memo } from 'react';
 import { v4 as uuidv4 } from 'uuid'
@@ -61,7 +61,7 @@ export const ProductCard = memo(({ count, product, item }: ProductCardProps) => 
 
                     </div>
                 </Dialog.Trigger>
-                <h1 className='max-w-[120px] md:max-w-[150px] text-md font-bold text-left truncate'>{product.title}</h1>
+                <h1 className='max-w-[130px] md:max-w-[150px] text-md font-bold text-left truncate'>{product.title}</h1>
                 <p>${product.price}</p>
                 <div className='mt-[15px] w-full'>
                     {showToggler ? <>
@@ -70,7 +70,7 @@ export const ProductCard = memo(({ count, product, item }: ProductCardProps) => 
                         <button className='px-2 border' onClick={() => handleIncreaseItem()}>+</button>
                     </>
                         :
-                        <button className='px-4 border rounded-md flex items-center justify-center gap-2' onClick={() => handleAddItem(product)}>
+                        <button className='px-2 md:px-4 border rounded-md flex items-center justify-center gap-2' onClick={() => handleAddItem(product)}>
                             <span>
                                 <img
                                     src={cartIcon}
@@ -84,13 +84,13 @@ export const ProductCard = memo(({ count, product, item }: ProductCardProps) => 
             </div>
             <Dialog.Portal>
                 <Dialog.Overlay className="fixed delay-200 h-screen inset-0 backdrop-blur-md bg-white/30 transition-all duration-100" />
-                <Dialog.Content className="bg-white fixed rounded-md p-[25px] max-w-full h-full md:h-auto md:max-w-[750px] w-[90vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <Dialog.Content className="overflow-auto bg-white fixed rounded-md p-[25px] max-w-full h-full md:h-auto md:max-w-[750px] w-[90vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                     <Dialog.Close asChild>
                         <button className="IconButton" aria-label="Close">
                             <Cross2Icon className='h-6 w-6' />
                         </button>
                     </Dialog.Close>
-                    <div className='flex'>
+                    <div className='flex-col md:flex-row md:flex'>
                         <img
                             src={product.image}
                             className='w-[150px] md:w-[250px] h-[150px] md:h-[250px]'

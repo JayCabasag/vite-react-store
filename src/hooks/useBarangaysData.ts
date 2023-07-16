@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
-import { Product, StatusType } from "../entities/types";
+import { Barangay, StatusType } from "../entities/types";
 
-export function useProductsData(url: string, limit: number) {
-    const [products, setProducts] = useState<Product[]>([]);
+export function useBarangaysData(url: string) {
+    const [cities, setCities] = useState<Barangay[]>([]);
     const [status, setStatus] = useState<StatusType>('idle')
 
     useEffect(() => {
         let ignore = false;
         setStatus('loading')
-        if (limit > 10) {
-            setStatus('loading-next-page')
-        }
         fetch(url)
             .then(response => response.json())
             .then(json => {
                 if (!ignore) {
-                    setProducts(json);
+                    setCities(json.data);
                     setStatus('success')
                 }
             }).catch(() => {
@@ -27,5 +24,5 @@ export function useProductsData(url: string, limit: number) {
             ignore = true;
         };
     }, [url]);
-    return { products, status }
+    return { cities, status }
 }

@@ -1,5 +1,5 @@
 import './App.css'
-import { Product } from './context/types'
+import { Product } from './entities/types'
 import { ProductCard } from './components/compositions/product/ProductCard'
 import { useProducts } from './context/ProductsContext'
 import { useSnapshot } from 'valtio'

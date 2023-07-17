@@ -76,7 +76,7 @@ function App() {
           )
         })}
       </div>
-      {status === 'loading-next-page' && <Loading />}
+      {status === 'loading-next-page' && <div className='w-full flex items-center justify-center min-h-[80px]'><Loading /></div>}
       {/* {!(status === 'loading' || status === 'loading-next-page') && (
         <button className='px-4 p-2 bg-blue-500 mt-10 text-white font-bold' onClick={() => updateProductLimits(5)}>Load more</button>
       )} */}

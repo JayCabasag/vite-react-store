@@ -22,7 +22,7 @@ export const Navbar = () => {
 
     return <nav className="relative min-h-[45px] w-full py-[12px]">
         <div className="flex">
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-3xl font-bold ml-4 md:ml-0">
                 Store Logo
             </h1>
             <Cart totalProducts={totalProducts} isLoading={isLoading} toggleCartDrawer={handleToggleCartDrawer} />

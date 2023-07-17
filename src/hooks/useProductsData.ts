@@ -3,7 +3,7 @@ import { Product, StatusType } from "../entities/types";
 
 export function useProductsData(url: string, limit: number) {
     const [products, setProducts] = useState<Product[]>([]);
-    const [status, setStatus] = useState<StatusType>('idle')
+    const [status, setStatus] = useState<StatusType>('loading')
 
     useEffect(() => {
         let ignore = false;

@@ -22,7 +22,6 @@ interface CartDrawerProps {
 function CartDrawer({ items, showCartDrawer, toggleCartDrawer }: CartDrawerProps) {
     const userStates = useSnapshot(userState)
     const { user } = userStates
-
     const [open, setOpen] = useState(false)
 
     const handleCheckout = () => {
@@ -39,7 +38,7 @@ function CartDrawer({ items, showCartDrawer, toggleCartDrawer }: CartDrawerProps
         return accumulator + (price * count)
     }, 0)
     return <Dialog.Root open={open} onOpenChange={setOpen}>
-        <div className={`fixed ${showCartDrawer ? 'w-full md:w-[500px]' : 'w-0'} shadow-md overflow-hidden bg-white top-0 left-auto right-0 transition-all`}>
+        <div className={`fixed ${showCartDrawer ? 'w-full md:w-[500px]' : 'w-0'} shadow-md overflow-hidden bg-white top-0 left-auto right-0 transition-all `}>
             <div className={`${showCartDrawer ? ' flex ' : ' hidden '} h-screen w-full flex-col`}>
                 <div className='w-full flex items-start p-4 border'>
                     <button className='min-w-[32px] min-h-[32px]' onClick={toggleCartDrawer}>

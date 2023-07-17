@@ -20,8 +20,13 @@ export const Navbar = () => {
         setShowCartDrawer(!showCartDrawer)
     }, [showCartDrawer])
 
-    return <nav className="relative">
-        <Cart totalProducts={totalProducts} isLoading={isLoading} toggleCartDrawer={handleToggleCartDrawer} />
+    return <nav className="relative min-h-[45px] w-full py-[12px]">
+        <div className="flex">
+            <h1 className="text-3xl font-bold">
+                Store Logo
+            </h1>
+            <Cart totalProducts={totalProducts} isLoading={isLoading} toggleCartDrawer={handleToggleCartDrawer} />
+        </div>
         <CartDrawer items={cartItems} showCartDrawer={showCartDrawer} toggleCartDrawer={handleToggleCartDrawer} />
     </nav>
 }

@@ -1,4 +1,4 @@
-import { Product } from "../../context/types"
+import { Product } from "../../entities/types"
 
 export type Item = {
     id: string,

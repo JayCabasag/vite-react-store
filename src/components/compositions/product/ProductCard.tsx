@@ -49,9 +49,9 @@ export const ProductCard = memo(({ count, product, item }: ProductCardProps) => 
 
     return (
         <Dialog.Root>
-            <div className='flex flex-col items-start shadow-md p-4 border rounded-md'>
+            <div className='flex flex-col items-start shadow-md p-4 border rounded-md bg-white'>
                 <Dialog.Trigger asChild>
-                    <div className='border h-[150px] w-[120px] md:w-[150px] object-contain overflow-hidden flex items-center justify-center' role='button'>
+                    <div className='border h-[150px] w-[120px] md:w-[150px] object-contain overflow-hidden flex items-center justify-center bg-white px-[25px]' role='button'>
                         <img
                             src={product.image}
                             height={150}

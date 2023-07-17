@@ -9,6 +9,7 @@ import { Navbar } from './components/compositions/navbar'
 import storeBanner from '../src/assets/store-banner.jpg'
 import { useEffect, useRef } from 'react'
 import { useIntersection } from '@mantine/hooks'
+import Loading from './components/shared/Loading/Loading'
 
 function App() {
   const cartStates = useSnapshot(cartState)
@@ -31,10 +32,7 @@ function App() {
   return (
     <main className='relative'>
       <Navbar />
-      <h1 className="text-3xl font-bold">
-        Store
-      </h1>
-      <div className='h-[110px] md:h-[300px] w-full shadow-md mt-6 overflow-hidden transition-all'>
+      <div className='min-w-full h-[110px] md:h-[300px] w-full shadow-md mt-6 overflow-hidden transition-all'>
         <img
           src={storeBanner}
           height={300}
@@ -43,7 +41,7 @@ function App() {
         />
       </div>
       <div className='mt-[40px] flex gap-2 md:gap-6 flex-wrap items-center justify-center min-h-[150px]  md:min-h-[200px]'>
-        {status === 'loading' && 'Please wait...'}
+        {status === 'loading' && <Loading />}
         {!(status === 'loading') && _products.map((product: Product, index: number) => {
 
           const cartItem = cartItems.find((item) => {
@@ -78,11 +76,7 @@ function App() {
           )
         })}
       </div>
-      {status === 'loading-next-page' && (
-        <div className='min-h-[250px] flex items-center justify-center'>
-          Please wait...
-        </div>
-      )}
+      {status === 'loading-next-page' && <Loading />}
       {/* {!(status === 'loading' || status === 'loading-next-page') && (
         <button className='px-4 p-2 bg-blue-500 mt-10 text-white font-bold' onClick={() => updateProductLimits(5)}>Load more</button>
       )} */}

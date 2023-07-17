@@ -1,6 +1,6 @@
 import { ReactNode, useContext } from "react";
 import { createContext } from "react";
-import { Product, StatusType } from "./types";
+import { Product, StatusType } from "../entities/types";
 import { useState } from "react";
 import { useProductsData } from "../hooks/useProductsData";
 

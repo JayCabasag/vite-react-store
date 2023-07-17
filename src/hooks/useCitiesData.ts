@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StatusType } from "../context/types";
+import { StatusType } from "../entities/types";
 import { City } from "../entities/types";
 
 export function useCitiesData(url: string) {
